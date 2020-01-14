@@ -9,7 +9,7 @@ int dim1 = 10;
 int nbPixelsX = round(2 * 8 * dim1);
 int nbPixelsY = round(2 * 8 * dim1);
 */
-int dim1 = 200;
+int dim1 = 50;
 int nbPixelsX = 1366;
 int nbPixelsY = 768;
 
