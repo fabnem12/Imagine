@@ -15,9 +15,9 @@ int nbPixelsY = 768;
 
 std::complex<double> fonction(std::complex<double>& nb) {
     //fonction proposée sur Wikipedia pour illustrer la coloration de régions, à modifier à la guise de l'utilisateur !
-    //std::complex<double> image = (std::pow(nb, 2) - 1.0) * std::pow(nb - std::complex<double>(2, 1), 2) / (std::pow(nb, 2) + std::complex<double>(2, 2));
-    //e^z-e^(z-1)xi^z
-    std::complex<double> image = std::exp(nb) - std::exp(nb - 1.0) * std::pow(std::complex<double>(0, 1), nb);
+    std::complex<double> image = (std::pow(nb, 2) - 1.0) * std::pow(nb - std::complex<double>(2, 1), 2) / (std::pow(nb, 2) + std::complex<double>(2, 2));
+    //std::complex<double> image = std::exp(nb) - std::exp(nb - 1.0) * std::pow(std::complex<double>(0, 1), nb);
+    //std::complex<double> image = (nb != 0.0) ? std::pow(std::sin(nb), nb) : 0;
 
     return image;
 }
