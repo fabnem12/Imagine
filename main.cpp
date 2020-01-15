@@ -22,7 +22,7 @@ std::complex<double> fonction(std::complex<double>& nb) {
     return image;
 }
 
-std::string coul(std::complex<double>& nb) {
+std::string couleurStr(std::complex<double>& nb) {
     //double norme = norm(nb); //On laisse tomber la norme, pourquoi pas l'intégrer d'une façon ou d'une autre à l'avenir...
     double argument = arg(nb);
 
@@ -43,7 +43,7 @@ void ecritPGM(std::vector<std::vector<std::complex<double> > >& matrice) {
 
     for (std::vector<std::complex<double> >& ligne : matrice) {
         for (std::complex<double>& nb : ligne)
-            affi += coul(nb) + "\n";
+            affi += couleurStr(nb) + "\n";
         affi += "\n";
     }
 
