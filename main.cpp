@@ -9,9 +9,9 @@ int dim1 = 10;
 int nbPixelsX = round(2 * 8 * dim1);
 int nbPixelsY = round(2 * 8 * dim1);
 */
-int dim1 = 50;
-int nbPixelsX = 1366;
-int nbPixelsY = 768;
+int dim1 = 1500*5;
+int nbPixelsX = 1366*5;
+int nbPixelsY = 768*5;
 
 std::complex<double> cosComplexe(std::complex<double> nb) {
     return (std::exp(std::complex<double>(0,1) * nb) + std::exp(std::complex<double>(0,-1) * nb)) / 2.;
@@ -24,12 +24,14 @@ std::complex<double> fonction(std::complex<double>& nb) {
     //std::complex<double> image = (nb != 0.0) ? std::pow(std::sin(nb), nb) : 0;
     std::complex<double> image = 0;
     for (int n = 0; n < 50; n++) {
-        image += pow(0.5, n) * cosComplexe(pow(2 + 3 * M_PI, n) * M_PI * nb);
+        std::complex<double> interne = pow(2 + 3 * M_PI, n) * M_PI * nb;
+        std::complex<double> cosCalc = cosComplexe(interne / norm(interne));
+
+        image += pow(0.5, n) * cosCalc / norm(cosCalc);
     }
 
     if (std::isnan(real(image))) {
-        std::cout << nb << std::endl;
-        exit(0);
+        image = 0;
     }
 
     return image;
@@ -42,8 +44,6 @@ std::string couleurStr(std::complex<double>& nb) {
     int r = round(127.5 * (cos(argument) + 1));
     int g = round(127.5 * (sin(argument) + 1));
     int b = 255 - r;
-    std::cout << argument << " " << r << std::endl;
-    std::cout << nb << std::endl;
 
     return std::to_string(r) + " " + std::to_string(g) + " " + std::to_string(b);
 }
@@ -68,11 +68,6 @@ void ecritPGM(std::vector<std::vector<std::complex<double> > >& matrice) {
 
 int main() {
     std::vector<std::vector<std::complex<double> > > matrice = std::vector<std::vector<std::complex<double> > >(nbPixelsY, std::vector<std::complex<double> >(nbPixelsX, std::complex<double>(0, 0)));
-
-    std::complex<double> zero = std::complex<double>(0,0);
-    std::cout << fonction(zero) << std::endl;
-    long nb = pow(36, 50);
-    std::cout << nb << std::endl;
 
     for (double im = 0; im < nbPixelsY; im++)
         for (double re = 0; re < nbPixelsX; re++) {
