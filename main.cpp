@@ -69,10 +69,12 @@ void ecritPGM(std::vector<std::vector<std::complex<double> > >& matrice) {
 
 int main() {
     std::vector<std::vector<std::complex<double> > > matrice = std::vector<std::vector<std::complex<double> > >(nbPixelsY, std::vector<std::complex<double> >(nbPixelsX, std::complex<double>(0, 0)));
+    std::vector<int> centre = {nbPixelsX / 2, nbPixelsY / 2};
+    //centre = {nbPixelsX / 2 - dim1 * std::pow(M_PI / 2, 0.5), nbPixelsY / 2};
 
     for (double im = 0; im < nbPixelsY; im++)
         for (double re = 0; re < nbPixelsX; re++) {
-            std::complex<double> nb = std::complex<double>((re - nbPixelsX/2) / dim1, (im - nbPixelsY/2) / dim1);
+            std::complex<double> nb = std::complex<double>((re - centre[0]) / dim1, (im - centre[1]) / dim1);
             matrice[im][re] = fonction(nb);
         }
 
