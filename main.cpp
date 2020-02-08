@@ -17,6 +17,10 @@ std::complex<double> cosComplexe(std::complex<double> nb) {
     return (std::exp(std::complex<double>(0,1) * nb) + std::exp(std::complex<double>(0,-1) * nb)) / 2.;
 }
 
+std::complex<double> sinComplexe(std::complex<double> nb) {
+    return (std::exp(std::complex<double>(0,1) * nb) - std::exp(std::complex<double>(0,-1) * nb)) / std::complex<double>(0,2);
+}
+
 std::complex<double> fonction(std::complex<double>& nb) {
     //fonction proposée sur Wikipedia pour illustrer la coloration de régions, à modifier à la guise de l'utilisateur !
     //std::complex<double> image = (std::pow(nb, 2) - 1.0) * std::pow(nb - std::complex<double>(2, 1), 2) / (std::pow(nb, 2) + std::complex<double>(2, 2));
@@ -29,7 +33,7 @@ std::complex<double> fonction(std::complex<double>& nb) {
 
         image += pow(0.5, n) * cosCalc / norm(cosCalc);
     }*/
-    std::complex<double> image = std::pow(cosComplexe(nb * nb), std::complex<double>(0,1)); //TRES TRES SYMPA
+    std::complex<double> image = std::pow(sinComplexe(nb * nb), std::complex<double>(0,1)); //TRES TRES SYMPA
 
     if (std::isnan(real(image))) {
         image = 0;
