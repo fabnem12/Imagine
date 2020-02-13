@@ -16,14 +16,6 @@ bool couleursInit = true; //laisser à true pour avoir des couleurs plus jolies
 
 //pour le moment, l'image est forcément centrée sur 0, je vais essayer de permettre de choisir le centre de l'image
 
-std::complex<double> cosComplexe(std::complex<double> nb) {
-    return (std::exp(std::complex<double>(0,1) * nb) + std::exp(std::complex<double>(0,-1) * nb)) / 2.;
-}
-
-std::complex<double> sinComplexe(std::complex<double> nb) {
-    return (std::exp(std::complex<double>(0,1) * nb) - std::exp(std::complex<double>(0,-1) * nb)) / std::complex<double>(0,2);
-}
-
 std::complex<double> fonction(std::complex<double>& nb) {
     //fonction proposée sur Wikipedia pour illustrer la coloration de régions, à modifier à la guise de l'utilisateur !
     //std::complex<double> image = (std::pow(nb, 2) - 1.0) * std::pow(nb - std::complex<double>(2, 1), 2) / (std::pow(nb, 2) + std::complex<double>(2, 2));
@@ -32,17 +24,18 @@ std::complex<double> fonction(std::complex<double>& nb) {
     /*std::complex<double> image = 0; //fonction de Weierstrass
     for (int n = 0; n < 50; n++) {
         std::complex<double> interne = pow(2 + 3 * M_PI, n) * M_PI * nb;
-        std::complex<double> cosCalc = cosComplexe(interne / norm(interne));
+        std::complex<double> cosCalc = cos(interne / norm(interne));
 
         image += pow(0.5, n) * cosCalc / norm(cosCalc);
     }*/
-    std::complex<double> image = std::exp(sin(nb));
-    /*for (int n = 1; n <= 50; n++) { //fonction zeta de Riemann
+    std::complex<double> image = std::exp(cos(nb));
+    /*std::complex<double> image = 0;
+    for (int n = 1; n <= 200; n++) { //fonction zeta de Riemann
         image += 1. / std::pow(n, nb);
     }*/
-    //std::complex<double> image = std::pow(sinComplexe(nb * nb), std::complex<double>(0,1)); //TRES TRES SYMPA
+    //std::complex<double> image = std::pow(sin(nb * nb), std::complex<double>(0,1)); //TRES TRES SYMPA
 
-    //std::complex<double> image = std::pow(sinComplexe(nb *nb), std::complex<double>(0,1));
+    //std::complex<double> image = std::pow(sin(nb *nb), std::complex<double>(0,1));
     //std::complex<double> image = log(nb);
 
     if (std::isnan(real(image))) {
