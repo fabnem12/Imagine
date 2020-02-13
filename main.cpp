@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-int multipli = 5;
+int multipli = 1;
 
 int dim1 = 30*multipli;
 //une différence de dim1 pixels est traduite par une différence de 1, en partie imaginaire comme réelle
@@ -36,7 +36,7 @@ std::complex<double> fonction(std::complex<double>& nb) {
 
         image += pow(0.5, n) * cosCalc / norm(cosCalc);
     }*/
-    std::complex<double> image = std::exp(cos(nb));
+    std::complex<double> image = std::exp(sin(nb));
     /*for (int n = 1; n <= 50; n++) { //fonction zeta de Riemann
         image += 1. / std::pow(n, nb);
     }*/
