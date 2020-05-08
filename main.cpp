@@ -14,6 +14,15 @@ int nbPixelsY = 800*multipli; //hauteur en pixels de l'image
 
 bool couleursInit = true; //laisser à true pour avoir des couleurs plus jolies
 
+const std::complex<double> i = std::complex<double>(0, 1); //pour avoir i accessible facilement
+
+std::complex<double> operator*(double a, std::complex<double> b) {
+    return b*a;
+}
+std::complex<double> operator+(double a, std::complex<double> b) {
+    return b+a;
+}
+
 //pour le moment, l'image est forcément centrée sur 0, je vais essayer de permettre de choisir le centre de l'image
 
 std::complex<double> fonction(std::complex<double>& nb) {
@@ -28,7 +37,7 @@ std::complex<double> fonction(std::complex<double>& nb) {
 
         image += pow(0.5, n) * cosCalc / norm(cosCalc);
     }*/
-    std::complex<double> image = std::exp(cos(nb));
+    std::complex<double> image = nb*nb*nb - (2+i)*nb*nb + 2*(1+i)*nb - 2*i;
     /*std::complex<double> image = 0;
     for (int n = 1; n <= 200; n++) { //fonction zeta de Riemann
         image += 1. / std::pow(n, nb);
